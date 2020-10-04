@@ -1,0 +1,7 @@
+FROM node:12.13 AS base-microservice
+
+WORKDIR /app
+RUN npm install -g @nestjs/cli
+RUN apt-get update
+RUN apt-get install vim -y
+#RUN mkdir -p .shared

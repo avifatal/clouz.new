@@ -1,0 +1,44 @@
+version: '3.5'
+services:
+  base-microservice:
+    image: base-microservice
+    build:
+      context: ../
+      dockerfile: infra/BaseMicroserviceDockerfile
+      target: base-microservice
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ../
+      dockerfile: api-gateway/Dockerfile
+      target: api-gateway-prod
+    ports:
+      - 3501:3501
+#  true-caller-service:
+#    container_name: true-caller-service
+#    build:
+#      context: ../
+#      dockerfile: true-caller-service/Dockerfile
+#      target: true-caller-service-prod
+#    ports:
+#      - 3502:3502
+#    depends_on:
+#      - clouz-rmq
+#  true-caller:
+#    container_name: true-caller
+#    build:
+#      context: ../
+#      dockerfile: apps/true-caller/Dockerfile
+#      target: true-caller-prod
+#    depends_on:
+#      - clouz-rmq
+  
+#  clouz-rmq:
+#    container_name: clouz-rmq
+#    image: rabbitmq:3.8.8-management
+#    ports:
+#      - 15673:15672
+#      - 5673:5672
+#    environment:
+#      RABBITMQ_DEFAULT_USER: nNrich
+#      RABBITMQ_DEFAULT_PASS: nnNrich

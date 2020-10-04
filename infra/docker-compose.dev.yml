@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+
+  api-gateway:
+    build:
+      target: api-gateway-dev
+    ports:
+    - 9300:9229
+    command: npm run start:docker
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../api-gateway/:/app/
+
+#  true-caller-service:
+#    build:
+#      target: true-caller-service-dev
+#    ports:
+#    - 9301:9229
+#    command: nest start --debug 0.0.0.0:9229 --watch --preserveWatchOutput
+#    volumes:
+#      - ../true-caller-service/:/app/
